@@ -1,0 +1,50 @@
+
+
+
+
+
+
+main{
+    width: 100%;
+    min-height: 100vh;
+  
+   
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+  a{
+    text-decoration: none;
+  }
+  
+  .link {
+    padding-bottom: 2px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent; /* Inicialmente sin subrayado */
+    transition: border-color 0.2s ease; 
+  }
+
+  .link:hover {
+    border-color: #FFF;
+    color: var(--Neutral-100, #FFF);
+
+    /* Components/Link */
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: 0.48px;
+  }
+  .link:active{
+    color: #EB6933;
+    border-color: #EB6933;
+  }
+  .link:disabled{
+    color: #D2D2D2;
+    border-bottom: 2px solid transparent;
+  }
+
+
+  

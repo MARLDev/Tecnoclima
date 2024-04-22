@@ -1,0 +1,34 @@
+.modal-header-container{
+    display: flex;
+padding: 8px 12px;
+align-items: flex-start;
+gap: 8px;
+align-self: stretch;
+border-radius: 4px;
+background: var(--Semantic-Info, #02A2D3);
+color: var(--Neutral-100, #FFF);
+}
+
+.send-text{
+    color: var(--Neutral-100, #FFF);
+
+/* Text/S-Hero */
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 24px; /* 150% */
+align-self: stretch;
+}
+
+.send-text-secondary{
+    color: var(--Neutral-100, #FFF);
+
+/* Text/XS */
+font-family: Montserrat;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+align-self: stretch;
+}
