@@ -9,7 +9,7 @@ const Contact = () => {
     <div id="contact">
       {language === "castellano" ? (
         <div className="contact-page">
-          <ContactoCat />
+          <ContactoEs />
         </div>
       ) : (
         <div className="contact-page">
