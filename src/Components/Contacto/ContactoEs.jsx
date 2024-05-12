@@ -26,7 +26,84 @@ const ContactoEs = () => {
     e.preventDefault();
     const errors = {};
 
-    // Validaciones...
+    if (!formValues.name) {
+      errors.name = (
+        <div className="error-box">
+          <img
+            className="error-icon"
+            src="Error@3x.svg"
+            alt="icono exclamación"
+          />
+          <p className="error-text">Completa este campo</p>
+        </div>
+      );
+    }
+
+    if (!formValues.email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)) {
+      errors.email = (
+        <div className="error-box">
+          <img
+            className="error-icon"
+            src="Error@3x.svg"
+            alt="icono exclamación"
+          />
+          <p className="error-text">El formato debe ser nombre@ejemplo.com</p>
+        </div>
+      );
+    }
+
+    if (!formValues.phone.match(/^[0-9]{9}$/)) {
+      errors.phone = (
+        <div className="error-box">
+          <img
+            className="error-icon"
+            src="Error@3x.svg"
+            alt="icono exclamación"
+          />
+          <p className="error-text">Formato no válido</p>
+        </div>
+      );
+    }
+
+    // Validación específica para el código postal
+    if (!formValues.postalCode.match(/^[0-9]{5}$/)) {
+      errors.postalCode = (
+        <div className="error-box">
+          <img
+            className="error-icon"
+            src="Error@3x.svg"
+            alt="icono exclamación"
+          />
+          <p className="error-text">Formato no válido</p>
+        </div>
+      );
+    }
+
+    if (!formValues.servicio) {
+      errors.servicio = (
+        <div className="error-box">
+          <img
+            className="error-icon"
+            src="Error@3x.svg"
+            alt="icono exclamación"
+          />
+          <p className="error-text">Selecciona una opción</p>
+        </div>
+      );
+    }
+
+    if (!formValues.message) {
+      errors.message = (
+        <div className="error-box">
+          <img
+            className="error-icon"
+            src="Error@3x.svg"
+            alt="icono exclamación"
+          />
+          <p className="error-text">Completa este campo</p>
+        </div>
+      );
+    }
 
     if (Object.keys(errors).length === 0) {
       await handleSubmit(formValues);
@@ -276,6 +353,7 @@ const ContactoEs = () => {
                       { label: "Placas solares", value: "Placas solares" },
                     ]}
                     onSelect={handleServicioSelect}
+                    holderplace={"Interesado en..."}
                   />
                   {validationErrors.servicio && (
                     <div className="validator-message-box">

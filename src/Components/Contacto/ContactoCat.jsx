@@ -3,6 +3,7 @@ import Modal from "../Modal/Modal";
 import "./Contacto.css";
 import { useForm } from "@formspree/react";
 import CustomSelect from "../CustomSelect";
+import Mapa from "../Mapa";
 
 const ContactoCat = () => {
   const [state, handleSubmit] = useForm("xqkrdbol");
@@ -14,7 +15,7 @@ const ContactoCat = () => {
     phone: "",
     postalCode: "",
     message: "",
-    servicio: "", // Nuevo campo para el dropdown
+    servicio: "",
   });
 
   useEffect(() => {
@@ -23,9 +24,7 @@ const ContactoCat = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
     const errors = {};
-
     if (!formValues.name) {
       errors.name = (
         <div className="error-box">
@@ -107,18 +106,14 @@ const ContactoCat = () => {
 
     if (Object.keys(errors).length === 0) {
       await handleSubmit(formValues);
-
-      // Abre el modal
       setIsModalOpen(true);
-
-      // Reinicia los valores de los campos del formulario
       setFormValues({
         name: "",
         email: "",
         phone: "",
         postalCode: "",
         message: "",
-        servicio: "", // Reiniciar el valor del dropdown
+        servicio: "",
       });
     } else {
       setValidationErrors(errors);
@@ -127,19 +122,19 @@ const ContactoCat = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    // Verificar si el valor seleccionado no es el placeholder
     setFormValues({
       ...formValues,
       [name]: value,
     });
   };
+
   const handleServicioSelect = (option) => {
     setFormValues({
       ...formValues,
       ["servicio"]: option.value,
     });
   };
+
   return (
     <>
       <div className="contacto-content-container">
@@ -164,46 +159,75 @@ const ContactoCat = () => {
         </div>
       </div>
       <div className="datos-contacto-container">
-        <a className="datos-contacto-box" href="mailto:info@tecnoclima.com.es">
-          <img className="contacto-icon" src="Mail@3x.svg" alt="icono e-mail" />
-          <h4>info@tecnoclima.com.es</h4>
-        </a>
-        <a className="datos-contacto-box" href="tel:611712312">
-          <img
-            className="contacto-icon"
-            src="Whatsapp@3x.svg"
-            alt="icono whatsapp"
-          />
-
-          <h4>611 712 312</h4>
-        </a>
-        <a
-          className="datos-contacto-box"
-          href="https://www.instagram.com/tecnoclimatizacion/"
-        >
-          <img
-            className="contacto-icon"
-            src="Instagram-contacto@3x.svg"
-            alt="icono instagram"
-          />
-
-          <h4>@tecnoclimatización</h4>
-        </a>
-        <a
-          className="datos-contacto-box"
-          href="https://www.google.com/maps/search/?api=1&query=C/Violinista+Vellsolà,+3+Local,+08222+Terrassa"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            className="contacto-icon"
-            src="Location@3x.svg"
-            alt="icono ubicación"
-          />
-          <h4>C/Violinista Vellsolà, 3 Local, 08222 Terrassa</h4>
-        </a>
+        <h2>Contacte</h2>
+        <div className="datos-contacto-content-box">
+          <div className="content-box-contacto box-first">
+            <a
+              className="datos-contacto-box"
+              href="mailto:info@tecnoclima.com.es"
+            >
+              <img
+                className="contacto-icon"
+                src="Mail@3x.svg"
+                alt="icono e-mail"
+              />
+              <h4>info@tecnoclima.com.es</h4>
+            </a>
+            <a
+              className="datos-contacto-box"
+              href="https://api.whatsapp.com/send?phone=34611712312"
+            >
+              <img
+                className="contacto-icon"
+                src="Whatsapp@3x.svg"
+                alt="icono whatsapp"
+              />
+              <h4>611 712 312</h4>
+            </a>
+            <a className="datos-contacto-box" href="tel:934186418">
+              <img
+                className="contacto-icon"
+                src="Phone-contacto@3x.svg"
+                alt="icono teléfono"
+              />
+              <h4>93 418 64 18</h4>
+            </a>
+          </div>
+          <div className="content-box-contacto">
+            <a
+              className="datos-contacto-box"
+              href="https://www.instagram.com/tecnoclimatizacion/"
+            >
+              <img
+                className="contacto-icon"
+                src="Instagram-contacto@3x.svg"
+                alt="icono instagram"
+              />
+              <h4>@tecnoclimatización</h4>
+            </a>
+            <a className="datos-horario-box">
+              <img
+                className="contacto-icon"
+                src="Reloj@3x.svg"
+                alt="icono reloj"
+              />
+              <div className="horario-content">
+                <p>
+                  <b>Dilluns a dijous:</b> 8:00h a 13:00h - 15:00h a 18:00h
+                </p>
+                <p>
+                  <b>Divendres:</b> 8:00h a 14:00h
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="mapa-container">
+        <Mapa />
       </div>
       <div className="contacto-formulario-container">
+        <h2>Escriu-nos!</h2>
         <div className="formulario-container-box">
           <div className="form-box-box">
             <form
@@ -296,66 +320,64 @@ const ContactoCat = () => {
                     )}
                   </div>
                 </div>
-                <div className="formulario-inputs-box">
-                  <div className="formulario-inputs-validation-box">
-                    {/* Utiliza el componente CustomSelect en lugar del select nativo */}
-                    <CustomSelect
-                      name="servicio"
-                      options={[
-                        {
-                          label: "Manteniment, instal·lació i reparació",
-                          value: "Mantenimiento, instalación y reparación",
-                        },
-                        {
-                          label: "Aire acondicionat",
-                          value: "Aire acondicionado",
-                        },
-                        { label: "Calefacció", value: "Calefacción" },
+                <div className="formulario-inputs-validation-box">
+                  <CustomSelect
+                    name="servicio"
+                    options={[
+                      {
+                        label: "Manteniment, instal·lació i reparació",
+                        value: "Mantenimiento, instalación y reparación",
+                      },
+                      {
+                        label: "Aire acondicionat",
+                        value: "Aire acondicionado",
+                      },
+                      { label: "Calefacció", value: "Calefacción" },
 
-                        {
-                          label: "Sòl Radiant",
-                          value: "Suelo Radiante",
-                        },
-                        {
-                          label: "Domòtica",
-                          value: "Domótica",
-                        },
-                        {
-                          label: "Aerotèrmia",
-                          value: "Aerotermia",
-                        },
-                        {
-                          label: "Refrigeració de CPD",
-                          value: "Refrigeración de CPD",
-                        },
-                        {
-                          label: "Fred industrial",
-                          value: "Frío industrial",
-                        },
-                        {
-                          label: "Plaques solares",
-                          value: "Placas solares",
-                        },
-                      ]}
-                      onSelect={handleServicioSelect}
-                    />
-                    {validationErrors.servicio && (
-                      <div className="validator-message-box">
-                        <p className="validator-message">
-                          {validationErrors.servicio}
-                        </p>
-                      </div>
-                    )}
-                  </div>
+                      {
+                        label: "Sòl Radiant",
+                        value: "Suelo Radiante",
+                      },
+                      {
+                        label: "Domòtica",
+                        value: "Domótica",
+                      },
+                      {
+                        label: "Aerotèrmia",
+                        value: "Aerotermia",
+                      },
+                      {
+                        label: "Refrigeració de CPD",
+                        value: "Refrigeración de CPD",
+                      },
+                      {
+                        label: "Fred industrial",
+                        value: "Frío industrial",
+                      },
+                      {
+                        label: "Plaques solars",
+                        value: "Placas solares",
+                      },
+                    ]}
+                    onSelect={handleServicioSelect}
+                    holderplace={"Interessat en..."}
+                  />
+                  {validationErrors.servicio && (
+                    <div className="validator-message-box">
+                      <p className="validator-message">
+                        {validationErrors.servicio}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 <div className="formulario-inputs-validation-box">
                   <textarea
                     className="formulario-textarea"
                     name="message"
-                    placeholder="Explica'ns més"
+                    placeholder="Explica’ns més"
                     value={formValues.message}
-                    style={{ resize: "none" }} // Evitar redimensionamiento
+                    style={{ resize: "none" }}
                     onChange={handleInputChange}
                   />
                   {validationErrors.message && (
@@ -389,6 +411,14 @@ const ContactoCat = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <Modal setIsModalOpen={setIsModalOpen}>
+          <p className="send-text">El teu missatge s'ha enviat correctament!</p>
+          <p className="send-text-secondary">
+            Aviat ens posarem en contacte amb tu
+          </p>
+        </Modal>
+      )}
     </>
   );
 };

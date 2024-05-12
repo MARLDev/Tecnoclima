@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./CustomSelect.css";
 
-const CustomSelect = ({ options, onSelect }) => {
+const CustomSelect = ({ options, onSelect, holderplace }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -18,7 +18,7 @@ const CustomSelect = ({ options, onSelect }) => {
   return (
     <div className="custom-select">
       <div className="selected-option" onClick={toggleSelect}>
-        {selectedOption ? selectedOption.label : "Interesado en..."}
+        {selectedOption ? selectedOption.label : holderplace}
         {/* Renderizado condicional de los iconos */}
         {!isOpen && (
           <img
